@@ -34,24 +34,29 @@ public class KeyController implements SerialPortEventListener {
 	/** Milliseconds to block while waiting for port open */
 	private static final int TIME_OUT = 2000;
 	/** Default bits per second for COM port. */
-	private static final int DATA_RATE = 31250;
+	private static final int DATA_RATE = 9600;
 	private MusicPlay player = null;
 	public void initialize() {
                 // the next line is for Raspberry Pi and 
                 // gets us into the while loop and was suggested here was suggested http://www.raspberrypi.org/phpBB3/viewtopic.php?f=81&t=32186
   		CommPortIdentifier portId = null;
-		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
-		player = new MusicPlay();
-		//First, Find an instance of serial port as set in PORT_NAMES.
-		while (portEnum.hasMoreElements()) {
-			CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
-			for (String portName : PORT_NAMES) {
-				if (currPortId.getName().equals(portName)) {
-					portId = currPortId;
-					break;
-				}
-			}
-		}
+  		boolean unfound = true;
+  		Enumeration portEnum = null;
+  		while(unfound){
+  			portEnum = CommPortIdentifier.getPortIdentifiers();
+  			player = new MusicPlay();
+  			//First, Find an instance of serial port as set in PORT_NAMES.
+  			while (portEnum.hasMoreElements()) {
+  				CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
+  				for (String portName : PORT_NAMES) {
+  					if (currPortId.getName().equals(portName)) {
+  						portId = currPortId;
+  						unfound = false;
+  						break;
+  					}
+  				}
+  			}
+  		}
 		if (portId == null) {
 			System.out.println("Could not find COM port.");
 			return;
@@ -119,14 +124,14 @@ public class KeyController implements SerialPortEventListener {
 	public void serialStart() throws Exception {
 		KeyController main = new KeyController();
 		main.initialize();
-		Thread t=new Thread() {
-			public void run() {
-				//the following line will keep this app alive for 1000 seconds,
-				//waiting for events to occur and responding to them (printing incoming messages to console).
-				try {Thread.sleep(1000000);} catch (InterruptedException ie) {}
-			}
-		};
-		t.start();
+//		Thread t=new Thread() {
+//			public void run() {
+//				//the following line will keep this app alive for 1000 seconds,
+//				//waiting for events to occur and responding to them (printing incoming messages to console).
+//				try {Thread.sleep(1000000);} catch (InterruptedException ie) {}
+//			}
+//		};
+//		t.start();
 		System.out.println("Started");
 	}
 }
