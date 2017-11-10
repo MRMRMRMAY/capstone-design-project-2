@@ -173,7 +173,7 @@ public class Capture extends Frame {
 				if (!file.getPath().endsWith(SUFFIX)) {
 					file = new File(file.getPath() + SUFFIX);
 				}
-				System.out.println("file path=" + file.getPath());
+				//System.out.println("file path=" + file.getPath());
 				if (file.exists()) {
 					int i = JOptionPane.showConfirmDialog(Capture.this, "该文件已经存在，确定要覆盖吗？");
 					if (i == JOptionPane.YES_OPTION)
@@ -192,10 +192,10 @@ public class Capture extends Frame {
 
 	// 取得AudioFormat
 	private AudioFormat getAudioFormat() {
-		float sampleRate = 16000.0F;
+		float sampleRate = 44100.0F;
 		// 8000,11025,16000,22050,44100
 		// int sampleSizeInBits = 16;
-		int sampleSizeInBits = 8;
+		int sampleSizeInBits = 16;
 		// 8,16
 		// int channels = 1;
 		int channels = 2;

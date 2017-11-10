@@ -1,0 +1,25 @@
+package htmlGuiSimple;
+import java.io.IOException;
+
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.event.HyperlinkEvent;
+public class JavaScriptJavaSample {
+	String vNewReportFileName = "www.google.com";
+	
+    public static void main(String[] args) {
+    	JFrame frame = new JFrame("HTML GUI SIMPLE");
+    	JEditorPane jep = new JEditorPane();
+    	jep.setContentType("text/html");
+    	jep.setEditable(false);
+    	try {
+			jep.setPage("www.google.com");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	frame.add(jep);
+    	frame.setSize(300,300);
+    	frame.setVisible(true);
+    }
+}

@@ -12,14 +12,16 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+import interfacePackage.MusicPlayer;
+
 public class RecordFunction extends JFrame {
 	private BufferedReader input;
-	MusicPlay player = null;
+	MusicPlayer player = null;
 	public RecordFunction(){
-		player = new MusicPlay();
+		player = new PianoPlayer();
 	}
 	public File getFile() {
-		final JFileChooser fc = new JFileChooser();
+		final JFileChooser fc = new JFileChooser("./");
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		// JFileChooser.FILES_ONLY
 		// JFileChooser.DIRECTORIES_ONLY

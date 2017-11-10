@@ -1,0 +1,9 @@
+package com.simple.restws;
+
+@PATH("/hello")
+public class HelloResource {  
+	@RequestMapping(value="/name",method=RequestMethod.GET)
+			public String test(){
+		return "hello";
+	}
+}  

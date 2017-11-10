@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Example</title>
+</head>
+<body>
+<p>
+I like <code>apples</code> and oranges
+</p>
+<a pref="www.baidu.com">Visit baidu</a>
+</body>
+</html>

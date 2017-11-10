@@ -3,13 +3,12 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
-import countdata.Pianokeys;
-
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent; 
 import gnu.io.SerialPortEventListener;
-import models.MusicPlay;
+import interfacePackage.MusicPlayer;
+import models.PianoPlayer;
 
 import java.util.Enumeration;
 
@@ -35,7 +34,9 @@ public class KeyController implements SerialPortEventListener {
 	private static final int TIME_OUT = 2000;
 	/** Default bits per second for COM port. */
 	private static final int DATA_RATE = 9600;
-	private MusicPlay player = null;
+	private MusicPlayer player = null;
+	
+	
 	public void initialize() {
                 // the next line is for Raspberry Pi and 
                 // gets us into the while loop and was suggested here was suggested http://www.raspberrypi.org/phpBB3/viewtopic.php?f=81&t=32186
@@ -44,7 +45,7 @@ public class KeyController implements SerialPortEventListener {
   		Enumeration portEnum = null;
   		while(unfound){
   			portEnum = CommPortIdentifier.getPortIdentifiers();
-  			player = new MusicPlay();
+  			player = new PianoPlayer();
   			//First, Find an instance of serial port as set in PORT_NAMES.
   			while (portEnum.hasMoreElements()) {
   				CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();

@@ -1,0 +1,5 @@
+package com.simple.restws;
+
+public class UserInfo {
+
+}

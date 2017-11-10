@@ -1,0 +1,16 @@
+package htmlGuiSimple;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+public class JavaScriptJavaSample {
+	
+    public static void main(String[] args) {
+    	JFrame frame = new JFrame("HTML GUI SIMPLE");
+    	
+    	JEditorPane jep = new JEditorPane();
+    	jep.setContentType("www.google.com");
+    	jep.setEditable(false);
+    	frame.add(jep);
+    	frame.setSize(300,300);
+    	frame.setVisible(true);
+    }
+}
