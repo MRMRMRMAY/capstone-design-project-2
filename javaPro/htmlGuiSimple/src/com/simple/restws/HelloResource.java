@@ -22,6 +22,7 @@ import net.sf.json.JSONObject;
 
 @Path("hello")
 public class HelloResource {  
+
 	@GET
 	@Path("/getSayHello")
 	@Produces(MediaType.TEXT_PLAIN)
