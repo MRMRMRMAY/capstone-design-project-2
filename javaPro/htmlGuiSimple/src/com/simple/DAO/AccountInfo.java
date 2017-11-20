@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import com.simple.model.Account;
 
 public class AccountInfo {
-	public ArrayList findAll() {
+	public static ArrayList findAll() {
 		Connection con=null;  
         PreparedStatement psta=null;  
         ResultSet rs=null;  
@@ -19,10 +19,14 @@ public class AccountInfo {
             rs=psta.executeQuery();  
             while(rs.next()){  
                 Account obj=new Account();  
-                obj.setId(rs.getInt(1));
-                obj.setAct_Id(rs.getString(2));
-                obj.setPw(rs.getString(3));
-            }  
+                //obj.setId(rs.getInt(1));
+                obj.setAct_Id(rs.getString(1));
+                obj.setPw(rs.getString(2));
+                obj.setFirst_name(rs.getString(3));
+                obj.setLast_name(rs.getString(4));
+                obj.setEmail_address(rs.getString(5));
+                list.add(obj);
+            } 
         }catch(Exception e){  
             e.printStackTrace();  
         }finally{  
@@ -34,22 +38,129 @@ public class AccountInfo {
             return list;  
         }  
 	}
-	public Account findAccountByActId(String _act_id) {
+	public static ArrayList findByKeys(String[]wheres, String[]keys) {
+		Connection con=null;  
+        PreparedStatement psta=null;  
+        ResultSet rs=null;  
+        ArrayList list=new ArrayList();  
+        String sql="select * from accountinfo where ";
+        for(String where: wheres) {
+        	sql = sql + where+"=? ";  
+        }
+        try{  
+            con=BaseDao.getConnection();  
+            psta=con.prepareStatement(sql);
+            for(int i = 0; i < keys.length;i++) {
+            	psta.setString(i+1, keys[i]);
+            }  
+            rs=psta.executeQuery();  
+            while(rs.next()){  
+                Account obj=new Account();  
+                //obj.setId(rs.getInt(1));
+                obj.setAct_Id(rs.getString(1));
+                obj.setPw(rs.getString(2));
+                obj.setFirst_name(rs.getString(3));
+                obj.setLast_name(rs.getString(4));
+                obj.setEmail_address(rs.getString(5));
+                list.add(obj);
+            } 
+        }catch(Exception e){  
+            e.printStackTrace();  
+        }finally{  
+            try{  
+                BaseDao.close(rs, psta, con);  
+            }catch(Exception e){  
+                e.printStackTrace();  
+            }  
+            return list;  
+        }  
+	}
+	public static ArrayList findByKey(String where, String key) {
+		Connection con=null;  
+        PreparedStatement psta=null;  
+        ResultSet rs=null;  
+        ArrayList list=new ArrayList();  
+        String sql="select * from accountinfo where " + where + "=?";
+        try{  
+            con=BaseDao.getConnection();  
+            psta=con.prepareStatement(sql);
+            psta.setString(1, key);  
+            rs=psta.executeQuery();  
+            while(rs.next()){  
+                Account obj=new Account();  
+                //obj.setId(rs.getInt(1));
+                obj.setAct_Id(rs.getString(1));
+                obj.setPw(rs.getString(2));
+                obj.setFirst_name(rs.getString(3));
+                obj.setLast_name(rs.getString(4));
+                obj.setEmail_address(rs.getString(5));
+                list.add(obj);
+            } 
+        }catch(Exception e){  
+            e.printStackTrace();  
+        }finally{  
+            try{  
+                BaseDao.close(rs, psta, con);  
+            }catch(Exception e){  
+                e.printStackTrace();  
+            }  
+            return list;  
+        }  
+	}
+	public static Account findAccountByKey(String where,String key) {
 		Connection con=null;  
         PreparedStatement psta=null;  
         ResultSet rs=null;  
         Account obj=null;  
-        String sql="select * from accountinfo where act_id=?";  
+        String sql="select * from accountinfo where "+where+"=?";  
         try{  
             con=BaseDao.getConnection();  
             psta=con.prepareStatement(sql);  
-            psta.setString(1, _act_id);  
+            psta.setString(1, key);
             rs=psta.executeQuery();  
             if(rs.next()){  
                 obj=new Account();  
-                obj.setId(rs.getInt(1));  
-                obj.setAct_Id(rs.getString(2));  
-                obj.setPw(rs.getString(3));   
+                obj.setAct_Id(rs.getString(1));  
+                obj.setPw(rs.getString(2));   
+                obj.setFirst_name(rs.getString(3));
+                obj.setLast_name(rs.getString(4));
+                obj.setEmail_address(rs.getString(5));
+            }  
+        }catch(Exception e){  
+            e.printStackTrace();  
+        }finally{  
+            try{  
+                BaseDao.close(rs, psta, con);  
+            }catch(Exception e){  
+                e.printStackTrace();  
+            }  
+            return obj;  
+        }  
+	}
+	public static Account findAccountByKeys(String[] wheres,String[] keys) {
+		Connection con=null;  
+        PreparedStatement psta=null;  
+        ResultSet rs=null;  
+        Account obj=null;  
+        String sql="select * from accountinfo where ";
+        for(String where: wheres) {
+        	sql = sql + where+"=? ";  
+        }
+        try{  
+            con=BaseDao.getConnection();  
+            psta=con.prepareStatement(sql);
+            for(int i = 0; i < keys.length;i++) {
+            	psta.setString(i+1, keys[i]);
+            }
+            rs=psta.executeQuery();  
+            if(rs.next()){  
+                obj=new Account();  
+                //obj.setId(rs.getInt(1));  
+                obj.setAct_Id(rs.getString(1));  
+                obj.setPw(rs.getString(2));   
+                obj.setFirst_name(rs.getString(3));
+                obj.setLast_name(rs.getString(4));
+                obj.setEmail_address(rs.getString(5));
             }  
         }catch(Exception e){  
             e.printStackTrace();  

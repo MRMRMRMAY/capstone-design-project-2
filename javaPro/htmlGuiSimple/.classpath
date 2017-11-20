@@ -45,17 +45,12 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jdom-2.0.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-bundle-1.13.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-client-1.13.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-client-1.19.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-core-1.0.3.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-core-1.13.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-core-1.19.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-json-1.13.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-json-1.19.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-server-1.0.3.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-server-1.13.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-server-1.19.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-servlet-1.13.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-servlet-1.19.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jettison-1.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jfreechart-1.0.17-experimental.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jfreechart-1.0.17-swt.jar"/>
