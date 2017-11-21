@@ -90,6 +90,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/zxing-j2se.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/zxing.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json/org.json.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>

@@ -26,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import countdata.ButtonLableClass;
 import countdata.Date;
+import javax.swing.JComboBox;
 
 public class Capture extends Frame {
 	final String SUFFIX = ".wav";
@@ -40,8 +41,11 @@ public class Capture extends Frame {
 	AudioInputStream audioInputStream;
 	SourceDataLine sourceDataLine;
 	String filepath = null;
-
+	/**
+	 * @wbp.nonvisual location=111,189
+	 */
 	public Capture() {
+		
 		// 创建按钮
 		sourceDataLine = null;
 		final Button captureBtn = new Button(ButtonLableClass.CAPTURE);
@@ -101,7 +105,7 @@ public class Capture extends Frame {
 		// 设置窗体属性
 		setLayout(new FlowLayout());
 		setTitle("录音机程序");
-		setSize(350, 70);
+		setSize(422, 238);
 		setVisible(true);
 	}
 
