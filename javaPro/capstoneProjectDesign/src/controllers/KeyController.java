@@ -12,6 +12,8 @@ import models.PianoPlayer;
 
 import java.util.Enumeration;
 
+import javax.swing.JFrame;
+
 
 public class KeyController implements SerialPortEventListener {
 	SerialPort serialPort;
@@ -109,7 +111,6 @@ public class KeyController implements SerialPortEventListener {
 					System.out.println(voice);
 					Thread musicPlayer = new Thread(){
 						public void run() {
-							player.stop();
 							player.play(voice);
 						}
 					};
@@ -122,6 +123,10 @@ public class KeyController implements SerialPortEventListener {
 		}
 		// Ignore all the other eventTypes, but you should consider the other ones.
 	}
+	public JFrame studentMode = null;
+	public void setJFrame(JFrame _studentMode) {
+		studentMode = _studentMode;
+	}
 	public void serialStart() throws Exception {
 		KeyController main = new KeyController();
 		main.initialize();
@@ -133,6 +138,7 @@ public class KeyController implements SerialPortEventListener {
 //			}
 //		};
 //		t.start();
+		
 		System.out.println("Started");
 	}
 }

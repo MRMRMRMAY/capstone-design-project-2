@@ -4,10 +4,18 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import models.capture.Capture;
+
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class MainWindow {
 
 	private JFrame frame;
-
+	private StudentModeFrame stdFrame;
+	private Capture freeFrame;
 	/**
 	 * Launch the application.
 	 */
@@ -29,6 +37,10 @@ public class MainWindow {
 	 */
 	public MainWindow() {
 		initialize();
+		stdFrame = new StudentModeFrame();
+		stdFrame.setMainJF(frame);
+		freeFrame = new Capture();
+		freeFrame.setMainJF(frame);
 	}
 
 	/**
@@ -36,8 +48,28 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 600, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("student mode");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				stdFrame.setVisible(true);;//Jump to
+			}
+		});
+		btnNewButton.setBounds(220, 100, 170, 60);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("free mode");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				freeFrame.setVisible(true);
+			}
+		});
+		btnNewButton_1.setBounds(220, 199, 170, 60);
+		frame.getContentPane().add(btnNewButton_1);
 	}
-
 }

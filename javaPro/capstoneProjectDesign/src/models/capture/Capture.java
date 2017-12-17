@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.prefs.Preferences;
 import java.awt.Button;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,14 +22,22 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.TargetDataLine;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import countdata.ButtonLableClass;
 import countdata.Date;
-import javax.swing.JComboBox;
 
-public class Capture extends Frame {
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+
+public class Capture extends JFrame{
+	private JPanel contentPane;
 	final String SUFFIX = ".wav";
 	// final String DIRNAME = "record/";
 	boolean stopCapture = false; // 控制录音标志
@@ -41,17 +50,39 @@ public class Capture extends Frame {
 	AudioInputStream audioInputStream;
 	SourceDataLine sourceDataLine;
 	String filepath = null;
-	/**
-	 * @wbp.nonvisual location=111,189
-	 */
+	static JFrame MainJF;
+	Capture jframe;
+	public void setMainJF(JFrame jf) {
+		this.MainJF = jf;
+	}
 	public Capture() {
-		
+		jframe = this;
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 900, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		// 创建按钮
+		JButton btnBack = new JButton("back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jframe.setVisible(false);
+				MainJF.setVisible(true);
+			}
+		});
+		btnBack.setBounds(17, 15, 76, 29);
+		contentPane.add(btnBack);
 		sourceDataLine = null;
-		final Button captureBtn = new Button(ButtonLableClass.CAPTURE);
-		final Button stopBtn = new Button(ButtonLableClass.STOP);
-		final Button playBtn = new Button(ButtonLableClass.PLAY);
-		final Button saveBtn = new Button(ButtonLableClass.SAVE);
+		JButton captureBtn = new JButton(ButtonLableClass.CAPTURE);
+		captureBtn.setBounds(42, 62, 170, 60);
+		JButton stopBtn = new JButton(ButtonLableClass.STOP);
+		stopBtn.setBounds(252, 62, 170, 60);
+		JButton playBtn = new JButton(ButtonLableClass.PLAY);
+		playBtn.setBounds(462, 62, 170, 60);
+		JButton saveBtn = new JButton(ButtonLableClass.SAVE);
+		saveBtn.setBounds(663, 62, 170, 60);
+		
 		captureBtn.setEnabled(true);
 		stopBtn.setEnabled(false);
 		playBtn.setEnabled(false);
@@ -67,7 +98,7 @@ public class Capture extends Frame {
 				capture();
 			}
 		});
-		add(captureBtn);
+		contentPane.add(captureBtn);
 		// 注册停止事件
 		stopBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -79,7 +110,7 @@ public class Capture extends Frame {
 				stop();
 			}
 		});
-		add(stopBtn);
+		contentPane.add(stopBtn);
 		// 注册播放事件
 		playBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,7 +118,7 @@ public class Capture extends Frame {
 				play();
 			}
 		});
-		add(playBtn);
+		contentPane.add(playBtn);
 		// 注册保存事件
 		saveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,7 +126,7 @@ public class Capture extends Frame {
 				save();
 			}
 		});
-		add(saveBtn);
+		contentPane.add(saveBtn);
 		// 注册窗体关闭事件
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -103,10 +134,16 @@ public class Capture extends Frame {
 			}
 		});
 		// 设置窗体属性
-		setLayout(new FlowLayout());
-		setTitle("录音机程序");
-		setSize(422, 238);
-		setVisible(true);
+//		setLayout(new FlowLayout());
+//		setTitle("Free Mode");
+//		setSize(800, 600);
+		final JLabel label = new JLabel();
+		label.setBounds(33, 253, 800, 237);
+		ImageIcon icon = new ImageIcon("image/piano.jpg");
+		icon.setImage(icon.getImage().getScaledInstance(750,200,Image.SCALE_DEFAULT));
+		label.setIcon(icon);
+		contentPane.add(label);
+		//setVisible(true);
 	}
 
 	// （1）录音事件，保存到ByteArrayOutputStream中
