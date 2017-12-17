@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="api/bootstrap-fileup/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.form.js"></script>
+<script src="api/bootstrap-fileup/js/fileinput.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/comman.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="container kv-main">
+		<h1 class='text-center' id="result"></h1>
+	</div>
+</body>
+<script type="text/javascript">
+	$('#result').html(getQueryString("result"));
+</script>
+</html>

@@ -1,9 +1,0 @@
-package com.simple.restws;
-
-import org.springframework.stereotype.Controller;
-
-@Controller
-@REquestMapping("/hello")
-public class HelloResource {  
- 
-}  
