@@ -12,9 +12,9 @@
 //int delayval = 500;
 #define BTNCOUNT 36
 #define LEDCOUNT 7
-unsigned int capSensePin[] = {22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 
-                              46, 48, 50, 52, 23, 25, 27, 29, 31, 33, 35, 37,
-                              39, 41, 43, 45, 47, 49, 51,  9, 10, 11, 12, 13};
+unsigned int capSensePin[] = {52, 50, 48, 46, 44, 42, 40, 38, 36, 34, 32, 30, 
+                              28, 26, 24, 22, 53, 51, 49, 47, 45, 43, 41, 39, 
+                              37, 35, 33, 31, 29, 27, 25, 23, 10, 11, 12, 13};
 unsigned int ledPin[] = {2, 3, 4, 5, 6, 7, 8};
 
 //int ON = 100;//velocity of MIDI notes, must be between 0 and 127
@@ -22,9 +22,9 @@ unsigned int ledPin[] = {2, 3, 4, 5, 6, 7, 8};
 unsigned int LINE = 3;
 //int noteON = 144;//144 = 10010000 in binary, note on command  
 
-String pianoKeys[] = {"C3", "C3#", "D3", "D3#", "E3", "F3", "F3#", "G3", "G3#", "A3", "A3#", "B3",
-                      "C4", "C4#", "D4", "D4#", "E4", "F4", "F4#", "G4", "G4#", "A4", "A4#", "B4",
-                      "C5", "C5#", "D5", "D5#", "E5", "F5", "F5#", "G5", "G5#", "A5", "A5#", "B5"};
+//String pianoKeys[] = {"C3", "C#3", "D3", "D#3", "E3", "F3", "F#3", "G3", "G#3", "A3", "A#3", "B3",
+//                      "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4",
+//                      "C5", "C#5", "D5", "D#5", "E5", "F5", "F#5", "G5", "G#5", "A5", "A#5", "B5"};
   
 static unsigned int lastInput[BTNCOUNT] = {0};
 
@@ -165,9 +165,9 @@ void startReg(){
     if (lastInput[i] < newInput[i] && newInput[i] > LINE && lastInput[i] <= LINE) {
       changeTime = millis();
 //      Serial.print(newInput[i]);
-//      Serial.print(lastInput[i]);
+      Serial.print(capSensePin[i]);
+     // Serial.println(pianoKeys[i]);
       ledLight(newInput[i]);
-      Serial.println(pianoKeys[i]);
     }
     lastInput[i] = newInput[i];
   }

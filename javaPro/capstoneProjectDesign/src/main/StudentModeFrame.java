@@ -46,6 +46,7 @@ public class StudentModeFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public StudentModeFrame() {
+		
 		KeyList = Keys.getVoices();
 		random = new Random();
 		int randomVal = random.nextInt(KeyList.length);
@@ -82,7 +83,8 @@ public class StudentModeFrame extends JFrame {
 	public void updateLable(String key) {
 		String labletext = lblReady.getText();
 		int randomVal = random.nextInt(KeyList.length);
-		if(key.equals(labletext)) {
+		String val = Keys.getVoice(key);
+		if(val.equals(labletext)) {
 			lblReady.setText(KeyList[randomVal]);
 		}
 	}

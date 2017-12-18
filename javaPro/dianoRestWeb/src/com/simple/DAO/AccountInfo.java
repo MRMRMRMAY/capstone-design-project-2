@@ -201,4 +201,35 @@ public class AccountInfo {
             return flag;  
         }  
     }
+	public static int addNewAccount(String act_id, String act_pw, String first_name, String last_name, String email_address) {
+		// TODO Auto-generated method stub
+		Connection con=null;
+        PreparedStatement psta=null;  
+        ResultSet rs=null;
+		String sql = "INSERT INTO accountinfo (act_id,act_pw,first_name,last_name,email_address,status) VALUES(?,?,?,?,?)";
+		boolean isFalse = true;
+		try{
+            con=BaseDao.getConnection();  
+            psta=con.prepareStatement(sql);
+            psta.setString(1, act_id);
+    		psta.setString(2, act_pw);
+    		psta.setString(3, first_name);
+    		psta.setString(4, last_name);
+    		psta.setString(5, email_address);
+    		psta.setInt(6, 1);
+    		isFalse=psta.execute(); 
+    		System.out.println(isFalse);
+        }catch(Exception e){  
+            e.printStackTrace();
+        }finally{  
+            try{  
+                BaseDao.close(rs, psta, con);  
+            }catch(Exception e){  
+                e.printStackTrace();  
+            }
+            if(isFalse)
+    			return -1;
+    		return 0;
+        }
+	}
 }

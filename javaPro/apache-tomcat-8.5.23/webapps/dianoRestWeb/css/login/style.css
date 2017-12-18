@@ -174,8 +174,15 @@ form.forgot_password{
 	float:left;
 	margin:2px 5px 0px 0px;
 }
-.form_wrapper span.error{
+.form_wrapper span.errors{
 	visibility:hidden;
+	color:red;
+	font-size:11px;
+	font-style:italic;
+	display:block;
+	margin:4px 30px;
+}
+.form_wrapper span.error{
 	color:red;
 	font-size:11px;
 	font-style:italic;

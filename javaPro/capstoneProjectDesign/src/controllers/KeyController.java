@@ -8,11 +8,14 @@ import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent; 
 import gnu.io.SerialPortEventListener;
 import interfacePackage.MusicPlayer;
+import main.StudentModeFrame;
 import models.PianoPlayer;
 
 import java.util.Enumeration;
 
 import javax.swing.JFrame;
+
+import countdata.Keys;
 
 
 public class KeyController implements SerialPortEventListener {
@@ -37,7 +40,7 @@ public class KeyController implements SerialPortEventListener {
 	/** Default bits per second for COM port. */
 	private static final int DATA_RATE = 9600;
 	private MusicPlayer player = null;
-	
+	public static StudentModeFrame studentMode;
 	
 	public void initialize() {
                 // the next line is for Raspberry Pi and 
@@ -111,7 +114,12 @@ public class KeyController implements SerialPortEventListener {
 					System.out.println(voice);
 					Thread musicPlayer = new Thread(){
 						public void run() {
+//							PianoPlayer temp = new PianoPlayer();
+//							temp.play(voice);
+							player.stop();
 							player.play(voice);
+							if(studentMode.isVisible())
+								studentMode.updateLable(voice);
 						}
 					};
 					musicPlayer.start();
@@ -123,8 +131,7 @@ public class KeyController implements SerialPortEventListener {
 		}
 		// Ignore all the other eventTypes, but you should consider the other ones.
 	}
-	public JFrame studentMode = null;
-	public void setJFrame(JFrame _studentMode) {
+	public void setJFrame(StudentModeFrame _studentMode) {
 		studentMode = _studentMode;
 	}
 	public void serialStart() throws Exception {

@@ -42,39 +42,35 @@
 				<h3>Register</h3>
 				<div class="column">
 					<div>
-						<!-- <label>First Name:</label>-->
-						<input type="text" placeholder="First Name" /> <span class="error">This
-							is an error</span>
+						<label>First Name:</label>
+						<input type="text" placeholder="First Name" id='reg_fn' onblur="checkfn()"/> <span class="error" id="reg_fnerror"></span>
 					</div>
 					<div>
-						<!--<label>Last Name:</label>-->
-						<input type="text" placeholder="Last Name" /> <span class="error">This
-							is an error</span>
+						<label>Last Name:</label>
+						<input type="text" placeholder="Last Name" id='reg_ln' onblur="checkln()"/> <span class="error" id="reg_lnerror"></span>
 					</div>
 					<div>
-						<!--<label>Username:</label>-->
-						<input type="text" placeholder="Email" /> <span class="error">This
-							is an error</span>
+						<label>Email:</label>
+						<input type="text" placeholder="Email" id='reg_email' onblur="checkEmail()"/> <span class="error" id="reg_emailerror"></span>
 					</div>
 					<!--</div>
 						<div class="column">-->
 					<div>
-						<!--<label>Email:</label>-->
-						<input type="text" placeholder="Username" /> <span class="error">This
-							is an error</span>
+						<label>Username:</label>
+						<input type="text" placeholder="Username" id='reg_usn' onblur="checkUser()"/> 
+						<span class="error" id="reg_usnerror"></span>
 					</div>
 					<div>
-						<!--<label>Password:</label>-->
-						<input type="password" placeholder="Password" /> <span
-							class="error">This is an error</span>
+						<label>Password:</label>
+						<input type="password" placeholder="Password" id='reg_pw' onblur="checkPwd()"/> <span class="error" id="reg_pwerror"></span>
 					</div>
 					<div>
 						<!--<label>Re-enter password:</label>
 								<input type="text" value="http://"/>
 								<span class="error">This is an error</span>-->
-
-						<input type="password" placeholder="Re-enter password" /> <span
-							class="error">This is an error</span>
+						<label>Re-enter password:</label>
+						<input type="password" placeholder="Re-enter password" id='reg_pwcf' onblur="checkpwd_cf()"/> <span
+							class="error" id="reg_pwcferror"></span>
 					</div>
 				</div>
 				<div class="bottom">
@@ -91,13 +87,13 @@
 				<h3>Login</h3>
 				<div>
 					<label>Username:</label> <input type="text" id="idInput" /> <span
-						class="error">This is an error</span>
+						class="error"></span>
 				</div>
 				<div>
 					<label>Password: <a href="forgot_password.jsp"
 						rel="forgot_password" class="forgot linkform">Forgot your
 							password?</a></label> <input type="password" id="pwInput" /> <span
-						class="error">This is an error</span>
+						class="error"></span>
 				</div>
 				<div class="bottom">
 					<div class="remember">
@@ -114,7 +110,7 @@
 				<h3>Forgot Password</h3>
 				<div>
 					<label>Username or Email:</label> <input type="text" /> <span
-						class="error">This is an error</span>
+						class="error"></span>
 				</div>
 				<div class="bottom">
 					<input type="button" value="Send reminder"></input> <a
@@ -206,6 +202,112 @@
 								e.preventDefault();
 							 });	
 			});
-        </script>
+			</script>
+			<script type="text/javascript">
+				function register(){
+					
+				}
+				function checkstr(str,digit){
+					var n = 0;
+					for(i = 0; i < str.length; i++){
+						var leg = str.charCodeAt(i);
+						if(leg > 255){
+							n += 2;
+						}else{
+							n += 1;
+						}
+					}
+					if(n > digit){
+						return true;
+					}else{
+						return false;
+					}
+				}
+				//check repeat
+				function checkpwd_cf(){
+					var pwd_cfError = document.getElementById("reg_pwcferror");
+					var pwd = $('#reg_pw').val();
+					var pwd_cf = $('#reg_pwcf').val();
+					if(pwd!=pwd_cf){
+						pwd_cfError.innerHTML="The passwords you entered do not match.";
+					}else{
+						pwd_cfError.innerHTML="";
+					}
+					//The passwords you entered do not match.
+				}
+				function checkUser(){
+					//Username entered already in use. Please choose a different name.
+					var user = $('#reg_usn').val();
+					var userError = document.getElementById("reg_usnerror");
+					if(user.length >= 4 && user.length <= 16){
+						userError.innerHTML = ""
+						return false;
+					}else{
+						userError.innerHTML = ""
+						userError.innerHTML = "the length: 4 - 16"
+						return true;
+					}
+				}
+				function checkPwd(){
+					var Expression = /^[A-Za-z]{1}([A-Za-z0-9]|[._]){5,29}$/;
+					var objExp = new RegExp(Expression); //Create exp obj
+					var pwdError = document.getElementById("reg_pwerror");
+					var pwd = $('#reg_pw').val();
+					if(pwd.length<6||pwd.length>16){
+						pwdError.innerHTML="";
+						pwdError.innerHTML="the langth of pw: 6 - 16!";
+						return false;
+					}
+					else if(objExp.test(pwd) == false){//exp ok
+						pwdError.innerHTML="";
+						pwdError.innerHTML="your password cannot include /'// &*()";
+						return false;
+					}else{
+						pwdError.innerHTML="";
+						return true;
+					}
+				}
+				function checkEmail(){
+					var str = $('#reg_email');
+					var emailError = document.getElementById("reg_emailerror");
+					var error = "please entry the correct email address.";
+					//exp starting by '/'
+					
+					var Expression=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+					var objExp=new RegExp(Expression);
+					if(objExp.test(str)==true){
+						emailError.innerHTML="";
+						return true;
+					}else{
+						emailError.innerHTML="";
+						emailError.innerHTML=error;
+						return false;
+					}
+				}
+				function checkfn(){
+					var fnError = document.getElementById("reg_fnerror");
+					var fn = $.trim($("#reg_fn").val());
+					if(fn.length > 0){
+						fnError.innerHTML="";
+						return true;
+					}else{
+						fnError.innerHTML="";
+						fnError.innerHTML="please entry your first name";
+						return false;
+					}
+				}
+				function checkln(){
+					var lnError = document.getElementById("reg_lnerror");
+					var ln = $.trim($("#reg_ln").val());
+					if(ln.length > 0){
+						lnError.innerHTML="";
+						return true;
+					}else{
+						lnError.innerHTML="";
+						lnError.innerHTML="please entry your last name";
+						return false;
+					}
+				}
+			</script>
 </body>
 </html>

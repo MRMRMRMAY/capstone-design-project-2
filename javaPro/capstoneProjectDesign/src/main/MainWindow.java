@@ -3,7 +3,10 @@ package main;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
+import controllers.KeyController;
 import models.capture.Capture;
 
 import java.awt.GridLayout;
@@ -41,6 +44,19 @@ public class MainWindow {
 		stdFrame.setMainJF(frame);
 		freeFrame = new Capture();
 		freeFrame.setMainJF(frame);
+		Thread keyctrThread = new Thread(){
+			public void run() {
+				KeyController keyctr = new KeyController();
+				keyctr.setJFrame(stdFrame);
+				try {
+					keyctr.serialStart();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		keyctrThread.start();
 	}
 
 	/**

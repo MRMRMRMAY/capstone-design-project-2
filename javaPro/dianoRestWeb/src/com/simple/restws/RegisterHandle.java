@@ -22,7 +22,12 @@ public class RegisterHandle {
 		Account foundByEmailAddress = AccountInfo.findAccountByKey("email_address",infoMap.get("email_address"));
 		if(foundByActId == null && foundByEmailAddress == null)
 		{
-			return Response.ok().status(200).build();
+			if(AccountInfo.addNewAccount(
+					infoMap.get("act_id"),infoMap.get("act_pw"),infoMap.get("first_name"),
+					infoMap.get("last_name"),infoMap.get("email_address")) == -1)
+				return Response.ok().status(400).build();
+			else
+				return Response.ok().status(200).build();
 		}else if(foundByActId != null){
 			return Response.ok("This id has already been used").status(400).build();
 		}else {

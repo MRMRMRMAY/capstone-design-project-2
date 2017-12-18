@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="upda" key="selection"/>
+		<item value="label" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="label"/>
+			<item value="searchToggle"/>
+			<item value="obj"/>
+			<item value="search-input"/>
+			<item value="nav-link"/>
+			<item value="nav"/>
+			<item value="angular.min.js"/>
+			<item value="main.js"/>
+			<item value="main"/>
 			<item value="upda"/>
 			<item value="addN"/>
 			<item value="add"/>
 			<item value="ad"/>
 			<item value="BaseDao.getConnection();"/>
 			<item value="con"/>
-			<item value="input"/>
-			<item value="message"/>
-			<item value="fileupMessage"/>
-			<item value="submit("/>
-			<item value="submit( )"/>
-			<item value="submit()"/>
-			<item value="submit"/>
-			<item value="submit（）"/>
-			<item value="result-container"/>
 		</list>
 		<list key="replacehistory">
 			<item value="../../"/>

@@ -17,8 +17,9 @@ public class PianoPlayer extends MusicPlayer{
 	public PianoPlayer(){
 		audioList = new HashMap<String, AudioClip>();
 		URL codebase = null;
-		for(String voice : Keys.getVoices()){
+		for(String voice : Keys.getKeys()){
 			try {
+				//System.out.println(Keys.getVoice(voice));
 				codebase = new URL("file:/" + System.getProperty("user.dir") + FILEPATH + voice + SUFFIX);
 				audioList.put(voice, Applet.newAudioClip(codebase));
 			} catch (MalformedURLException e) {
@@ -43,6 +44,7 @@ public class PianoPlayer extends MusicPlayer{
 //			e.printStackTrace();
 //		}
 //		audio1 = Applet.newAudioClip(codebase);
+//		String myVoice = Keys.getVoice(voice);
 		audio1 = audioList.get(voice);
 		audio1.play();
 	}
