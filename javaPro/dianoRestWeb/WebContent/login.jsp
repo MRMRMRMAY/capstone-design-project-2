@@ -204,9 +204,42 @@
 			});
 			</script>
 			<script type="text/javascript">
-				function register(){
-					
+			$(function(){
+			$("#regBtn").click(function(){
+				var json = new Object();
+				json.act_id = $("#reg_usn").val();
+				json.act_pw = $("#reg_pw").val();
+				json.first_name = $("#reg_fn").val();
+				json.last_name = $("#reg_ln").val();
+				json.email_address = $("#reg_email").val();
+				var data = JSON.stringify(json);
+				if(checkPwd() && checkpwd_cf() && checkUser() && checkEmail() && checkfn() && checkln()){
+					//alert("asd");
+					$.ajax({
+						url : "rest/register/postRegister",
+						type:"POST",
+						data:data,
+						cache : true,
+						success:function(resultData){
+							window.location.href = "login.jsp";
+						},
+					error:function(resultData){
+						alert(resultData.responseText);
+					//var label=document.getElementById("msg");
+					//label.style.color="red";
+					//if(paramter.id ==""){
+					//	label.innerText="The id cannot be empty"; 
+					//}else if(paramter.pw == ""){
+					//	label.innerText="The pw cannot be empty";
+					//}
+					//else{
+					//	label.innerText="The id or password are incorrent"; 
+					//}
+						}
+					});
 				}
+			});
+			});
 				function checkstr(str,digit){
 					var n = 0;
 					for(i = 0; i < str.length; i++){
@@ -230,8 +263,10 @@
 					var pwd_cf = $('#reg_pwcf').val();
 					if(pwd!=pwd_cf){
 						pwd_cfError.innerHTML="The passwords you entered do not match.";
+						return false;
 					}else{
 						pwd_cfError.innerHTML="";
+						return true;
 					}
 					//The passwords you entered do not match.
 				}
@@ -241,18 +276,18 @@
 					var userError = document.getElementById("reg_usnerror");
 					if(user.length >= 4 && user.length <= 16){
 						userError.innerHTML = ""
-						return false;
+						return true;
 					}else{
 						userError.innerHTML = ""
 						userError.innerHTML = "the length: 4 - 16"
-						return true;
+						return false;
 					}
 				}
 				function checkPwd(){
 					var Expression = /^[A-Za-z]{1}([A-Za-z0-9]|[._]){5,29}$/;
 					var objExp = new RegExp(Expression); //Create exp obj
 					var pwdError = document.getElementById("reg_pwerror");
-					var pwd = $('#reg_pw').val();
+					var pwd = $.trim($('#reg_pw').val());
 					if(pwd.length<6||pwd.length>16){
 						pwdError.innerHTML="";
 						pwdError.innerHTML="the langth of pw: 6 - 16!";
@@ -268,11 +303,10 @@
 					}
 				}
 				function checkEmail(){
-					var str = $('#reg_email');
+					var str = $.trim($('#reg_email').val());
 					var emailError = document.getElementById("reg_emailerror");
 					var error = "please entry the correct email address.";
 					//exp starting by '/'
-					
 					var Expression=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
 					var objExp=new RegExp(Expression);
 					if(objExp.test(str)==true){

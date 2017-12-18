@@ -19,6 +19,7 @@ public class MainWindow {
 	private JFrame frame;
 	private StudentModeFrame stdFrame;
 	private Capture freeFrame;
+	private PracticeModeFrame pFrame;
 	/**
 	 * Launch the application.
 	 */
@@ -44,6 +45,8 @@ public class MainWindow {
 		stdFrame.setMainJF(frame);
 		freeFrame = new Capture();
 		freeFrame.setMainJF(frame);
+		pFrame = new PracticeModeFrame();
+		pFrame.setMainJF(frame);
 		Thread keyctrThread = new Thread(){
 			public void run() {
 				KeyController keyctr = new KeyController();
@@ -85,7 +88,17 @@ public class MainWindow {
 				freeFrame.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(220, 199, 170, 60);
+		btnNewButton_1.setBounds(220, 269, 170, 60);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		JButton button = new JButton("practice mode");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.setVisible(false);
+				pFrame.setVisible(true);
+			}
+		});
+		button.setBounds(220, 187, 170, 60);
+		frame.getContentPane().add(button);
 	}
 }

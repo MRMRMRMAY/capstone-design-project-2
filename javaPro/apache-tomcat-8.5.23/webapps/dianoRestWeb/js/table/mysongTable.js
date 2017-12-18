@@ -60,9 +60,9 @@ $(document).ready(function(){
 			field:"song_id",
 			title:"option",
 			formatter:function(value,row,index){
-				var fd = '<a href="#" mce_href="#" onclick="file_download(\''+row.song_id+'\')">download</a> ';
-				var p = '<span>  </span><a href="#" mce_href="#" onclick="file_player(\''+row.song_id+'\')">play</a>';
-				var del = '<span>  </span><a href="#" mce_href="#" onclick="file_delect(\''+row.song_id+'\')">delect</a>';
+				var fd = '<a href="#" mce_href="#" onclick="file_download(\''+row.song_id+'\')">DOWNLOAD</a> ';
+				var p = '<span>  </span><a href="#" mce_href="#" onclick="file_player(\''+row.song_id+'\')">PLAY</a>';
+				var del = '<span>  </span><a href="#" mce_href="#" onclick="file_delect(\''+row.song_id+'\')">DELETE</a>';
 				return fd + p + del;
 			}
 		}],

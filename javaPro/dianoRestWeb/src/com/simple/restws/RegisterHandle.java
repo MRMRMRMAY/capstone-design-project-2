@@ -20,18 +20,25 @@ public class RegisterHandle {
 		Map<String,String> infoMap = RegisterJsonparse.jsonparsing(info);
 		Account foundByActId = AccountInfo.findAccountByKey("act_id",infoMap.get("act_id"));
 		Account foundByEmailAddress = AccountInfo.findAccountByKey("email_address",infoMap.get("email_address"));
+		System.out.println("he");
 		if(foundByActId == null && foundByEmailAddress == null)
 		{
 			if(AccountInfo.addNewAccount(
 					infoMap.get("act_id"),infoMap.get("act_pw"),infoMap.get("first_name"),
-					infoMap.get("last_name"),infoMap.get("email_address")) == -1)
-				return Response.ok().status(400).build();
-			else
-				return Response.ok().status(200).build();
+					infoMap.get("last_name"),infoMap.get("email_address")) == -1) {
+				System.out.println("a");
+				return Response.ok().status(400).entity("error").build();
+			}
+			else {
+				System.out.println("b");
+				return Response.ok().status(200).entity("ok").build();
+			}
 		}else if(foundByActId != null){
-			return Response.ok("This id has already been used").status(400).build();
+			System.out.println("c");
+			return Response.ok().status(400).entity("This id has already been used").build();
 		}else {
-			return Response.ok("This email address has already been used").status(Response.Status.OK).build();
+			System.out.println("d");
+			return Response.ok().status(400).entity("This email address has already been used").build();
 		}
 	}
 }

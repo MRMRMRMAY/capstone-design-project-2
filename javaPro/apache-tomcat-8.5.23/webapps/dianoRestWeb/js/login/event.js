@@ -89,30 +89,30 @@ $(function(){
 			}
 		});
 	});
-	$("#regBtn").click(function(){
-		var paramter = getJSONdata();
-		var data = JSON.stringify(paramter);
-		$.ajax({
-			url : "rest/login/postLogin",
-			type:"POST",
-			data:data,
-			cache : true,
-			success:function(resultData){
-				window.location.href = "main.jsp";
-			},
-		error:function(resultData){
-			alert(resultData);
-			//var label=document.getElementById("msg");
-			//label.style.color="red";
-			//if(paramter.id ==""){
-			//	label.innerText="The id cannot be empty"; 
-			//}else if(paramter.pw == ""){
-			//	label.innerText="The pw cannot be empty";
-			//}
-			//else{
-			//	label.innerText="The id or password are incorrent"; 
-			//}
-		}
-		});
-	});
+//	$("#regBtn").click(function(){
+//		var paramter = getJSONdata();
+//		var data = JSON.stringify(paramter);
+//		$.ajax({
+//			url : "rest/login/postReg",
+//			type:"POST",
+//			data:data,
+//			cache : true,
+//			success:function(resultData){
+//				window.location.href = "main.jsp";
+//			},
+//		error:function(resultData){
+//			alert(resultData);
+//			//var label=document.getElementById("msg");
+//			//label.style.color="red";
+//			//if(paramter.id ==""){
+//			//	label.innerText="The id cannot be empty"; 
+//			//}else if(paramter.pw == ""){
+//			//	label.innerText="The pw cannot be empty";
+//			//}
+//			//else{
+//			//	label.innerText="The id or password are incorrent"; 
+//			//}
+//		}
+//		});
+//	});
 });

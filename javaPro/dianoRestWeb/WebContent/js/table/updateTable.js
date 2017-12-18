@@ -65,8 +65,8 @@ $(document).ready(function(){
 			field:"song_id",
 			title:"option",
 			formatter:function(value,row,index){
-				var fd = '<a href="#" mce_href="#" onclick="file_download(\''+row.song_id+'\')">download</a> ';
-				var p = '<a href="#" mce_href="#" onclick="file_player(\''+row.song_id+'\')">play</a>';
+				var fd = '<a href="#" mce_href="#" onclick="file_download(\''+row.song_id+'\')">DOWNLOAD</a> ';
+				var p = '<a href="#" mce_href="#" onclick="file_player(\''+row.song_id+'\')">PLAY</a>';
 				return fd + p;
 			}
 		}],

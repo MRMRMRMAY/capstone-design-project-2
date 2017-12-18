@@ -206,7 +206,7 @@ public class AccountInfo {
 		Connection con=null;
         PreparedStatement psta=null;  
         ResultSet rs=null;
-		String sql = "INSERT INTO accountinfo (act_id,act_pw,first_name,last_name,email_address,status) VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO accountinfo (act_id,act_pw,first_name,last_name,email_address,state) VALUES(?,?,?,?,?,?)";
 		boolean isFalse = true;
 		try{
             con=BaseDao.getConnection();  
